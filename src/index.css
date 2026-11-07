@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.17);
+  gap: 13px;
+}
+
+header img {
+  height: 40px;
+}
+
+.form-section {
+  padding: 20px 20px 30px;
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+}
+
+.form-section input {
+  width: 300px;
+  height: 35px;
+}
+
+.form-section button {
+  background: #000;
+  width: 175px;
+  color: #fff;
+  border-radius: 3px;
+  transition:
+    background 1s ease,
+    color 1s ease;
+}
+
+.form-section button::before {
+  content: "+";
+  padding-right: 7px;
+}
+
+.form-section button:hover {
+  background: #fff;
+  color: #000;
+}
+
+.ingredients-section {
+  padding: 0 20px 0;
+}
+
+.ingredients-section h2 {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.ingredients-section ul {
+  /*  width: fit-content; */
+  margin: 0 auto 20px;
+}
+
+.ingredients-section h2 ul {
+  margin-bottom: 20px;
+}
