@@ -1,8 +1,29 @@
 import React from "react";
 import IngredientsList from "/src/components/IngredientsList.jsx";
 
+import GrokRecipe from "/src/components/GrokRecipe.jsx";
+
+import { getRecipeFromMistral } from "/src/components/ai.js";
+
 export default function MainContent() {
-  const [ingredients, setIngredients] = React.useState([]);
+  const [ingredients, setIngredients] = React.useState([
+    "all the main spices",
+    "ground beef",
+    "tomato paste",
+    "Rice",
+  ]);
+
+  // Runs when the user clicks "Get a recipe"
+  async function getRecipe() {
+    // Wait for the AI to send back the recipe text
+    const recipeMarkdown = await getRecipeFromMistral(ingredients);
+    // Save it in state so React shows it on the page
+    setRecipe(recipeMarkdown);
+
+    // console.log(recipeMarkdown);
+  }
+
+  const [recipe, setRecipe] = React.useState("");
 
   function addIngredients(formData) {
     const newIngredient = formData.get("ingredient");
@@ -21,7 +42,12 @@ export default function MainContent() {
         />
         <button type="submit">Add Ingredients</button>
       </form>
-      <IngredientsList ingredients={ingredients} />
+
+      {ingredients.length > 0 && (
+        <IngredientsList ingredients={ingredients} getRecipe={getRecipe} />
+      )}
+
+      {recipe && <GrokRecipe recipe={recipe} />}
     </>
   );
 }

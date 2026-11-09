@@ -1,0 +1,28 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main] # runs every time you push to main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4 # get your code
+      - uses: actions/setup-node@v4 # install Node.js
+        with:
+          node-version: 22 # Vite 8 needs Node 20.19+
+      - run: npm ci # install packages
+      - run: npm run build # build the app into /dist
+      - uses: actions/upload-pag
+      es-artifact@v3
+        with:
+          path: dist # publish the dist folder
+      - uses: actions/deploy-pages@v4 # go live
