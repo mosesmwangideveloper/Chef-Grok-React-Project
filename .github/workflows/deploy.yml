@@ -21,6 +21,8 @@ jobs:
           node-version: 22 # Vite 8 needs Node 20.19+
       - run: npm ci # install packages
       - run: npm run build # build the app into /dist
+       env:
+          VITE_GROQ_API_KEY: ${{ secrets.VITE_GROQ_API_KEY }}  # hands the secret to Vite during the build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist # publish the dist folder
